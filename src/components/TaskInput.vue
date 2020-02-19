@@ -1,9 +1,23 @@
 <template>
-
+  <div>
+    <input type="text" class="input" v-model="task" @keyup.enter="addTask" />
+  </div>
 </template>
 
 <script>
-
+export default {
+  data() {
+    return {
+      task: ""
+    };
+  },
+  methods: {
+    addTask() {
+      this.$emit("taskAdded", this.task);
+      this.task = "";
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
