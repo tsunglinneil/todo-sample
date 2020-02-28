@@ -12,7 +12,7 @@ import TodoListVue from "./components/TodoList.vue"
 export default{
   data(){
     return {
-      todos:["example first"]
+      todos:[{todo:"example first",todoDate:"yyyy/mm/dd",address:"瑞光路"}]
     }
   },
   components:{
@@ -40,7 +40,7 @@ export default{
     },
     deleteTodo(index){
       console.log(`deleteTodo${index}`)
-      if(confirm(`你確定要清除此${this.todos[index]}筆代辦事項？`))
+      if(confirm(`你確定要清除\n於 ${this.todos[index].todoDate} \n在 ${this.todos[index].address} \n的 ${this.todos[index].todo}代辦事項？`))
         this.todos.splice(index,1)
     }
   }
@@ -63,5 +63,6 @@ export default{
 
 h1 {
   text-align: center;
+  width: 75%;
 }
 </style>

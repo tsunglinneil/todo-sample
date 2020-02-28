@@ -1,9 +1,12 @@
 <template>
-    <li>
-        {{todo}}
-        <slot></slot>
-    </li>
     
+            <tr>
+                <td>{{todo.todo}}</td>
+                <td>{{todo.todoDate}}</td>
+                <td>{{todo.address}}</td>
+                <td><slot></slot></td>
+            </tr>
+        
 </template>
 
 <script>
@@ -13,4 +16,9 @@
 </script>
 
 <style lang="scss">
+    @import "../../variables.scss";
+
+td {
+   text-align: center;
+}
 </style>

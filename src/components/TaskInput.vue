@@ -1,7 +1,9 @@
 <template>
     <div>
-      <input class="input" type="text" @keyup.enter="addTodoList" v-model="todo" :placeholder="placeholder">
-      <button class="input" style="width: 20%" @click="addTodoList">送出</button>
+      <input class="input" type="text" @keyup.enter="addTodoList" v-model="todo" :placeholder="placeholder+todoinput">
+      <input class="input" type="date" v-model='todoDate'>
+      <input class="input" type="text" v-model="address" :placeholder="placeholder+addressinput">
+      <button class="input" style="width: 75%" @click="addTodoList">送出</button>
     </div>
 </template>
 
@@ -10,14 +12,41 @@
     data(){
       return{
         todo:'',
-        placeholder:'請輸入代辦事項'
+        todoDate:'',
+        address:'',
+        placeholder:'請輸入',
+        todoinput:'代辦事項',
+        addressinput:'地點'
       };
     },
     methods:{
       addTodoList(){
         console.log(`add`)
-        this.$emit("addTodoLists",this.todo)
-        this.todo = ''
+        let errorMsg = '請輸入 '
+        let newTodo = {}
+        if(this.todo != '' && this.todoDate != '' && this.address != ''){
+            newTodo = {
+              todo:this.todo,
+              todoDate:this.todoDate,
+              address:this.address
+            }
+            this.$emit("addTodoLists",newTodo)
+            this.todo = ''
+            this.todoDate = ''
+            this.address = ''
+        }else{
+          if(this.todo == '')
+            errorMsg = errorMsg.concat(this.todoinput,' ')
+          if(this.todoDate == '')
+            errorMsg = errorMsg.concat('日期 ')
+          if(this.address == '')
+            errorMsg = errorMsg.concat(this.addressinput,' ')
+
+
+          alert(errorMsg)
+        }
+        
+        
       }
     }
   }
@@ -34,5 +63,6 @@
   font-size: 20px;
   font-family: Arial, Helvetica, sans-serif;
   align-content: center;
+  margin-top: 10px;
 }
 </style>
