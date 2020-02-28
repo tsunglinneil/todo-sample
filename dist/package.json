@@ -5,6 +5,9 @@
     "author": "Blaze",
     "private": true,
     "scripts": {
-      "postinstall": "npm install express"
+        "start": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint",
+        "postinstall": "npm install express"
     }
   }
